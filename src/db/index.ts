@@ -2,6 +2,7 @@ import { drizzle } from "drizzle-orm/postgres-js";
 import postgres from "postgres";
 import { chatsTable, messagesTable } from "./schema";
 import { and, desc, eq } from "drizzle-orm";
+import { ChatResponse, MessageResponse } from "../types";
 
 // 同步连接数据库
 // async function main() {
@@ -16,7 +17,7 @@ export const createChat = async (
   title: string,
   userId: string,
   model: string,
-) => {
+): Promise<ChatResponse | null> => {
   try {
     const [newChat] = await db
       .insert(chatsTable)
@@ -30,7 +31,10 @@ export const createChat = async (
 };
 
 // 获取对话
-export const getChat = async (chatId: number, userId: string) => {
+export const getChat = async (
+  chatId: number,
+  userId: string,
+): Promise<ChatResponse | null> => {
   try {
     const chats = await db
       .select()
@@ -47,7 +51,9 @@ export const getChat = async (chatId: number, userId: string) => {
 };
 
 // 获取当前用户侧边栏获取对话
-export const getChats = async (userId: string) => {
+export const getChats = async (
+  userId: string,
+): Promise<ChatResponse[] | null> => {
   try {
     const chats = await db
       .select()
@@ -62,12 +68,12 @@ export const getChats = async (userId: string) => {
   }
 };
 
-// 获取消息messages
+// 创建消息messages
 export const createMessage = async (
   chatId: number,
   content: string,
   role: string,
-) => {
+): Promise<MessageResponse | null> => {
   try {
     const [newMessage] = await db
       .insert(messagesTable)
@@ -81,7 +87,9 @@ export const createMessage = async (
 };
 
 // 获取消息messages
-export const getMessagesById = async (chatId: number) => {
+export const getMessagesById = async (
+  chatId: number,
+): Promise<MessageResponse[] | null> => {
   try {
     const messages = await db
       .select()
@@ -91,5 +99,8 @@ export const getMessagesById = async (chatId: number) => {
       return null;
     }
     return messages;
-  } catch (error) {}
+  } catch (error) {
+    console.error(error);
+    return null;
+  }
 };

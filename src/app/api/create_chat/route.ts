@@ -11,5 +11,7 @@ export async function POST(req: Request) {
     // 返回新chat的id
     return new Response(JSON.stringify({ id: newChat?.id }), { status: 200 });
   }
-  return new Response(null, { status: 200 });
+  return new Response(JSON.stringify({ error: "Unauthorized" }), {
+    status: 401,
+  });
 }

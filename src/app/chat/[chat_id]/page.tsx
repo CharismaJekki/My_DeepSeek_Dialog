@@ -14,12 +14,14 @@ export default function Page() {
   const [mode, setMode] = useState("deepseek-v3"); // 模型选择
 
   const handleChangeModel = useCallback(() => {
-    setMode(mode === "deepseek-v3" ? "deepseek-r1" : "deepseek-v3");
-  }, [mode]);
+    setMode((prevMode) =>
+      prevMode === "deepseek-v3" ? "deepseek-r1" : "deepseek-v3",
+    );
+  }, []); // ✅ 不依赖外部状态
 
   const { chat_id } = useParams();
   // 获取chat
-  const { data: chat } = useQuery({
+  const { data: chat, isLoading } = useQuery({
     queryKey: ["chat", chat_id],
     queryFn: async () => {
       return await axios.post(`/api/get_chat`, { chat_id });

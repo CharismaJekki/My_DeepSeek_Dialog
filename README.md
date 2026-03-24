@@ -159,7 +159,7 @@ Clerk 中间件检查认证状态
   ↓
 检查用户是否登录
   ↓
-调用 /api/creat_chat
+调用 /api/create_chat
   ↓
 创建新的对话记录（chats 表）
   ↓

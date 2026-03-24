@@ -27,7 +27,7 @@ export async function POST(req: Request) {
 
   // 消息给到deepseek模型 得到的result流式输出
   const result = streamText({
-    model: deepseek("deepseek-v3"),
+    model: deepseek(model),
     system: "You are a helpful assistant.",
     messages: await convertToModelMessages(messages),
     onFinish: async (res) => {
