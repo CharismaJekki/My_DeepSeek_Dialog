@@ -14,7 +14,6 @@
 
 - **Tailwind CSS 4** - 实用优先的 CSS 框架
 - **Material-UI 7.3.9** - React 组件库
-- **Emotion 11.14.0** - CSS-in-JS 库
 
 ### AI 集成
 
@@ -40,50 +39,6 @@
 
 - **Axios 1.13.6** - HTTP 客户端
 - **dotenv 17.3.1** - 环境变量管理
-
-## 项目结构
-
-```
-my_deepseek/
-├── drizzle/                      # Drizzle ORM 生成的迁移文件
-│   ├── meta/                     # 元数据
-│   └── 0000_light_slyde.sql     # 数据库迁移脚本
-├── public/                       # 静态资源
-├── src/
-│   ├── app/                      # Next.js App Router
-│   │   ├── api/                 # API 路由
-│   │   │   ├── chat/            # 聊天 API
-│   │   │   │   └── route.ts    # 处理聊天消息和 AI 响应
-│   │   │   ├── creat_chat/       # 创建对话 API
-│   │   │   │   └── route.ts
-│   │   │   ├── get_chat/        # 获取单个对话 API
-│   │   │   │   └── route.ts
-│   │   │   ├── get_chats/       # 获取对话列表 API
-│   │   │   │   └── route.ts
-│   │   │   └── get_messages/   # 获取消息历史 API
-│   │   │       └── route.ts
-│   │   ├── chat/               # 对话页面
-│   │   │   └── [chat_id]/     # 动态路由
-│   │   │       └── page.tsx    # 对话详情页
-│   │   ├── sign-in/            # 登录页面
-│   │   │   └── [[...sign-in]]/
-│   │   │       └── page.tsx
-│   │   ├── layout.tsx          # 根布局
-│   │   ├── page.tsx            # 首页
-│   │   └── globals.css        # 全局样式
-│   ├── components/             # React 组件
-│   │   ├── Navibar.tsx        # 侧边导航栏
-│   │   └── QueryClientProvider.tsx  # React Query 提供者
-│   ├── db/                   # 数据库相关
-│   │   ├── index.ts           # 数据库操作函数
-│   │   └── schema.ts          # 数据库模型定义
-│   └── middleware.ts          # Next.js 中间件
-├── drizzle.config.ts          # Drizzle ORM 配置
-├── next.config.ts            # Next.js 配置
-├── tsconfig.json             # TypeScript 配置
-├── postcss.config.mjs        # PostCSS 配置
-└── package.json             # 项目依赖
-```
 
 ## 数据库设计
 
@@ -124,15 +79,9 @@ my_deepseek/
 
 ### 3. AI 聊天
 
-- 支持 DeepSeek V3 和 R1 模型
 - 流式响应输出
 - 消息历史记录
 - 实时对话界面
-
-### 4. 模型切换
-
-- 在 deepseek-v3 和 deepseek-r1 之间切换
-- R1 模型提供深度思考能力
 
 ## 实现流程
 
@@ -230,10 +179,10 @@ NEXT_PUBLIC_CLERK_SIGN_IN_URL=/sign-in
 
 # DeepSeek API
 DEEPSEEK_API_KEY=your_deepseek_api_key
-BASE_URL=https://dashscope.aliyuncs.com/compatible-mode/v1
+BASE_URL=your_base_url
 
 # 数据库连接（Supabase）
-DATABASE_URL=postgresql://postgres.plgfnbzxonznjlakyfxg:password@aws-1-ap-northeast-1.pooler.supabase.com:6543/postgres
+DATABASE_URL=your_database_url
 ```
 
 ## 快速开始
