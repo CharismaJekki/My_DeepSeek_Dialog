@@ -81,8 +81,9 @@ export const createMessage = async (
       .returning();
     return newMessage;
   } catch (error) {
-    console.error(error);
-    return null;
+    console.error("Error creating message:", error);
+    // 可以添加重试逻辑或错误处理
+    throw error;
   }
 };
 
