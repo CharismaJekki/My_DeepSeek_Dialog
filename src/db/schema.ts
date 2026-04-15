@@ -1,4 +1,11 @@
-import { integer, pgTable, varchar, serial, text } from "drizzle-orm/pg-core";
+import {
+  integer,
+  pgTable,
+  varchar,
+  serial,
+  text,
+  boolean,
+} from "drizzle-orm/pg-core";
 
 // export const usersTable = pgTable("users", {
 //   id: integer().primaryKey().generatedAlwaysAsIdentity(),
@@ -20,6 +27,7 @@ export const messagesTable = pgTable("messages", {
   chatId: integer("chat_id").references(() => chatsTable.id),
   role: text("role").notNull(),
   content: text("content").notNull(),
+  isComplete: boolean("is_complete").default(false), // 新增：标记是否完成
 });
 
 // 用于传参
